@@ -8,7 +8,7 @@
  */
 
 import type * as React from 'react';
-import {Insets} from '../../../types/public/Insets';
+import {Insets} from '../../../public/Insets';
 import {GestureResponderEvent} from '../../Types/CoreEventTypes';
 
 /**

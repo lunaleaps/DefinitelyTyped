@@ -150,7 +150,7 @@ export * from './public/Insets';
 export * from './public/ReactNativeRenderer';
 export * from './public/ReactNativeTypes';
 
-import type {ErrorUtils} from './Libraries/vendor/core/ErrorUtils';
+import type { ErrorUtils } from './Libraries/vendor/core/ErrorUtils';
 
 declare global {
     interface NodeRequire {

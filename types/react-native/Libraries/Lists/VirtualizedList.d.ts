@@ -8,7 +8,7 @@
  */
 
 import type * as React from 'react';
-import type {LayoutChangeEvent} from '../../types';
+import type {LayoutChangeEvent} from '../../';
 import type {ScrollViewProps} from '../Components/ScrollView/ScrollView';
 
 export interface ViewToken {

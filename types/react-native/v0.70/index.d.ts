@@ -352,7 +352,12 @@ type TaskProvider = () => Task;
 type NodeHandle = number;
 
 // Similar to React.SyntheticEvent except for nativeEvent
-export interface NativeSyntheticEvent<T> extends React.BaseSyntheticEvent<T, React.ElementRef<HostComponent<unknown>>, React.ElementRef<HostComponent<unknown>>> {}
+export interface NativeSyntheticEvent<T>
+    extends React.BaseSyntheticEvent<
+        T,
+        React.ElementRef<HostComponent<unknown>>,
+        React.ElementRef<HostComponent<unknown>>
+    > {}
 
 export interface NativeTouchEvent {
     /**
@@ -577,12 +582,12 @@ export interface PressableProps extends AccessibilityProps, Omit<ViewProps, 'chi
     /**
      * Called when the hover is activated to provide visual feedback.
      */
-    onHoverIn?: null | ((event: MouseEvent) => void) | undefined,
+    onHoverIn?: null | ((event: MouseEvent) => void) | undefined;
 
     /**
      * Called when the hover is deactivated to undo visual feedback.
      */
-    onHoverOut?: null | ((event: MouseEvent) => void) | undefined,
+    onHoverOut?: null | ((event: MouseEvent) => void) | undefined;
 
     /**
      * Called when a single tap gesture is detected.
@@ -1042,7 +1047,7 @@ export interface LayoutRectangle {
 }
 
 // @see TextProps.onLayout
-export type LayoutChangeEvent = NativeSyntheticEvent<{ layout: LayoutRectangle, target?: NodeHandle | null }>;
+export type LayoutChangeEvent = NativeSyntheticEvent<{ layout: LayoutRectangle; target?: NodeHandle | null }>;
 
 interface TextLayoutLine {
     ascender: number;
@@ -8603,7 +8608,7 @@ export interface SwitchPropsIOS extends ViewProps {
 }
 
 export interface SwitchChangeEventData extends TargetedEvent {
-  value: boolean;
+    value: boolean;
 }
 
 export interface SwitchChangeEvent extends NativeSyntheticEvent<SwitchChangeEventData> {}

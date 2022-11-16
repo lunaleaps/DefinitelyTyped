@@ -6,7 +6,7 @@
  */
 
 import { TurboModule, TurboModuleRegistry } from 'react-native';
-'use strict';
+('use strict');
 
 export interface SomeConstants {
     x: string;
@@ -15,7 +15,7 @@ export interface SomeConstants {
 }
 
 export interface SampleSpec extends TurboModule {
-    getConstants(): SomeConstants
+    getConstants(): SomeConstants;
     doSomething(): void;
 }
 

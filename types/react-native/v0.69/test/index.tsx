@@ -441,7 +441,12 @@ export class PressableTest extends React.Component<{}> {
     render() {
         return (
             <>
-                <Pressable ref={this.myRef} onPress={this.onPressButton} style={{ backgroundColor: 'blue' }} unstable_pressDelay={100}>
+                <Pressable
+                    ref={this.myRef}
+                    onPress={this.onPressButton}
+                    style={{ backgroundColor: 'blue' }}
+                    unstable_pressDelay={100}
+                >
                     <View style={{ width: 150, height: 100, backgroundColor: 'red' }}>
                         <Text style={{ margin: 30 }}>Button</Text>
                     </View>
@@ -520,31 +525,28 @@ const AppStateExample = () => {
     const appStateIsAvailable = AppState.isAvailable;
 
     React.useEffect(() => {
-      const subscription = AppState.addEventListener("change", nextAppState => {
-        if (
-          appState.current.match(/inactive|background/) &&
-          nextAppState === "active"
-        ) {
-          console.log("App has come to the foreground!");
-        }
+        const subscription = AppState.addEventListener('change', nextAppState => {
+            if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+                console.log('App has come to the foreground!');
+            }
 
-        appState.current = nextAppState;
-        setAppStateVisible(appState.current);
-        console.log("AppState", appState.current);
-      });
+            appState.current = nextAppState;
+            setAppStateVisible(appState.current);
+            console.log('AppState', appState.current);
+        });
 
-      return () => {
-        subscription.remove();
-      };
+        return () => {
+            subscription.remove();
+        };
     }, []);
 
     return (
-      <View style={styles.container}>
-        <Text>Current state is: {appStateVisible}</Text>
-        <Text>Available: {appStateIsAvailable}</Text>
-      </View>
+        <View style={styles.container}>
+            <Text>Current state is: {appStateVisible}</Text>
+            <Text>Available: {appStateIsAvailable}</Text>
+        </View>
     );
-  };
+};
 
 // ViewPagerAndroid
 export class ViewPagerAndroidTest {
@@ -1308,9 +1310,9 @@ class AccessibilityTest extends React.Component {
 const AccessibilityLabelledByTest = () => (
     <>
         <View accessibilityLabelledBy="nativeID1"></View>
-        <View accessibilityLabelledBy={["nativeID2", "nativeID3"]}></View>
+        <View accessibilityLabelledBy={['nativeID2', 'nativeID3']}></View>
     </>
-)
+);
 
 AccessibilityInfo.isBoldTextEnabled().then(isEnabled =>
     console.log(`AccessibilityInfo.isBoldTextEnabled => ${isEnabled}`),
@@ -1331,7 +1333,7 @@ AccessibilityInfo.isScreenReaderEnabled().then(isEnabled =>
     console.log(`AccessibilityInfo.isScreenReaderEnabled => ${isEnabled}`),
 );
 AccessibilityInfo.getRecommendedTimeoutMillis(5000).then(timeoutMiles =>
-    console.log(`AccessibilityInfo.getRecommendedTimeoutMillis => ${timeoutMiles}`)
+    console.log(`AccessibilityInfo.getRecommendedTimeoutMillis => ${timeoutMiles}`),
 );
 
 AccessibilityInfo.addEventListener('announcementFinished', ({ announcement, success }) =>
@@ -1352,9 +1354,9 @@ AccessibilityInfo.addEventListener('reduceMotionChanged', isEnabled =>
 AccessibilityInfo.addEventListener('reduceTransparencyChanged', isEnabled =>
     console.log(`AccessibilityInfo.isReduceTransparencyEnabled => ${isEnabled}`),
 );
-const screenReaderChangedListener = (isEnabled: boolean): void => console.log(`AccessibilityInfo.isScreenReaderEnabled => ${isEnabled}`);
-AccessibilityInfo.addEventListener('screenReaderChanged', screenReaderChangedListener,
-).remove();
+const screenReaderChangedListener = (isEnabled: boolean): void =>
+    console.log(`AccessibilityInfo.isScreenReaderEnabled => ${isEnabled}`);
+AccessibilityInfo.addEventListener('screenReaderChanged', screenReaderChangedListener).remove();
 AccessibilityInfo.removeEventListener('screenReaderChanged', screenReaderChangedListener);
 
 const KeyboardAvoidingViewTest = () => <KeyboardAvoidingView enabled />;
@@ -1424,18 +1426,26 @@ const SwitchThumbColorTest = () => <Switch thumbColor={'red'} />;
 const SwitchOnChangeWithoutParamsTest = () => <Switch onChange={() => console.log('test')} />;
 const SwitchOnChangeUndefinedTest = () => <Switch onChange={undefined} />;
 const SwitchOnChangeNullTest = () => <Switch onChange={null} />;
-const SwitchOnChangePromiseTest = () => <Switch onChange={(event) => {
-  const e: SwitchChangeEvent = event;
-  return new Promise(() => e.nativeEvent.value);
-}} />;
+const SwitchOnChangePromiseTest = () => (
+    <Switch
+        onChange={event => {
+            const e: SwitchChangeEvent = event;
+            return new Promise(() => e.nativeEvent.value);
+        }}
+    />
+);
 
 const SwitchOnValueChangeWithoutParamsTest = () => <Switch onValueChange={() => console.log('test')} />;
 const SwitchOnValueChangeUndefinedTest = () => <Switch onValueChange={undefined} />;
 const SwitchOnValueChangeNullTest = () => <Switch onValueChange={null} />;
-const SwitchOnValueChangePromiseTest = () => <Switch onValueChange={(value) => {
-  const v: boolean = value;
-  return new Promise(() => v)
-}} />;
+const SwitchOnValueChangePromiseTest = () => (
+    <Switch
+        onValueChange={value => {
+            const v: boolean = value;
+            return new Promise(() => v);
+        }}
+    />
+);
 
 const NativeIDTest = () => (
     <ScrollView nativeID={'nativeID'}>
@@ -1454,8 +1464,8 @@ const ScrollViewMaintainVisibleContentPositionTest = () => (
 
 const ScrollViewInsetsTest = () => (
     <>
-      <ScrollView automaticallyAdjustKeyboardInsets />
-      <ScrollView automaticallyAdjustKeyboardInsets={false} />
+        <ScrollView automaticallyAdjustKeyboardInsets />
+        <ScrollView automaticallyAdjustKeyboardInsets={false} />
     </>
 );
 
@@ -1546,7 +1556,7 @@ const PermissionsAndroidTest = () => {
     PermissionsAndroid.requestMultiple([
         'android.permission.BLUETOOTH_SCAN',
         'android.permission.BLUETOOTH_CONNECT',
-        'android.permission.BLUETOOTH_ADVERTISE'
+        'android.permission.BLUETOOTH_ADVERTISE',
     ]).then(results => {
         switch (results['android.permission.BLUETOOTH_SCAN']) {
             case 'granted':
@@ -1938,26 +1948,38 @@ LayoutAnimation.configureNext(LayoutAnimation.create(123, 'easeIn', 'opacity'));
 // ActionSheetIOS
 const ActionSheetIOSTest = () => {
     // test destructiveButtonIndex undefined
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo'],
-        destructiveButtonIndex: undefined,
-    }, () => undefined);
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo'],
+            destructiveButtonIndex: undefined,
+        },
+        () => undefined,
+    );
 
     // test destructiveButtonIndex null
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo'],
-        destructiveButtonIndex: null,
-    }, () => undefined);
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo'],
+            destructiveButtonIndex: null,
+        },
+        () => undefined,
+    );
 
     // test destructiveButtonIndex single number
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo'],
-        destructiveButtonIndex: 0,
-    }, () => undefined);
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo'],
+            destructiveButtonIndex: 0,
+        },
+        () => undefined,
+    );
 
     // test destructiveButtonIndex number array
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo', 'bar'],
-        destructiveButtonIndex: [0, 1],
-    }, () => undefined);
-}
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo', 'bar'],
+            destructiveButtonIndex: [0, 1],
+        },
+        () => undefined,
+    );
+};

@@ -1323,18 +1323,26 @@ const SwitchThumbColorTest = () => <Switch thumbColor={'red'} />;
 const SwitchOnChangeWithoutParamsTest = () => <Switch onChange={() => console.log('test')} />;
 const SwitchOnChangeUndefinedTest = () => <Switch onChange={undefined} />;
 const SwitchOnChangeNullTest = () => <Switch onChange={null} />;
-const SwitchOnChangePromiseTest = () => <Switch onChange={(event) => {
-  const e: SwitchChangeEvent = event;
-  return new Promise(() => e.nativeEvent.value);
-}} />;
+const SwitchOnChangePromiseTest = () => (
+    <Switch
+        onChange={event => {
+            const e: SwitchChangeEvent = event;
+            return new Promise(() => e.nativeEvent.value);
+        }}
+    />
+);
 
 const SwitchOnValueChangeWithoutParamsTest = () => <Switch onValueChange={() => console.log('test')} />;
 const SwitchOnValueChangeUndefinedTest = () => <Switch onValueChange={undefined} />;
 const SwitchOnValueChangeNullTest = () => <Switch onValueChange={null} />;
-const SwitchOnValueChangePromiseTest = () => <Switch onValueChange={(value) => {
-  const v: boolean = value;
-  return new Promise(() => v)
-}} />;
+const SwitchOnValueChangePromiseTest = () => (
+    <Switch
+        onValueChange={value => {
+            const v: boolean = value;
+            return new Promise(() => v);
+        }}
+    />
+);
 
 const NativeIDTest = () => (
     <ScrollView nativeID={'nativeID'}>
@@ -1789,26 +1797,38 @@ LayoutAnimation.configureNext(LayoutAnimation.create(123, 'easeIn', 'opacity'));
 // ActionSheetIOS
 const ActionSheetIOSTest = () => {
     // test destructiveButtonIndex undefined
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo'],
-        destructiveButtonIndex: undefined,
-    }, () => undefined);
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo'],
+            destructiveButtonIndex: undefined,
+        },
+        () => undefined,
+    );
 
     // test destructiveButtonIndex null
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo'],
-        destructiveButtonIndex: null,
-    }, () => undefined);
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo'],
+            destructiveButtonIndex: null,
+        },
+        () => undefined,
+    );
 
     // test destructiveButtonIndex single number
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo'],
-        destructiveButtonIndex: 0,
-    }, () => undefined);
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo'],
+            destructiveButtonIndex: 0,
+        },
+        () => undefined,
+    );
 
     // test destructiveButtonIndex number array
-    ActionSheetIOS.showActionSheetWithOptions({
-        options: ['foo', 'bar'],
-        destructiveButtonIndex: [0, 1],
-    }, () => undefined);
-}
+    ActionSheetIOS.showActionSheetWithOptions(
+        {
+            options: ['foo', 'bar'],
+            destructiveButtonIndex: [0, 1],
+        },
+        () => undefined,
+    );
+};
